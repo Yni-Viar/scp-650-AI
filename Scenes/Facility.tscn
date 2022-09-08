@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://FPSController/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://GFX/Models/SCP-650-GLTF/SCP_650.tscn" type="PackedScene" id=2]
+[ext_resource path="res://GFX/Models/Rooms/LC_cont2_650.tscn" type="PackedScene" id=3]
+
+[node name="Facility" type="Spatial"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.01256, 1.40419, 1.54028 )
+
+[node name="SCP_650" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.61248, 0.255659, -8.54709 )
+
+[node name="LC_cont2_650" parent="." instance=ExtResource( 3 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
