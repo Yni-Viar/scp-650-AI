@@ -1,4 +1,4 @@
-extends Node
+extends KinematicBody
 
 
 #const vel_speed = 0
