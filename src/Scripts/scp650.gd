@@ -9,6 +9,7 @@ var vel = Vector3() #velocity
 var timer = 0 
 var waiting
 var pose
+var add_pos = Vector3(0, 0, 2) #need for spawning next to the player
 
 # Called when the node enters the scene tree for the first time.
 func _ready(): #used from SkanerSoft's script
@@ -36,7 +37,7 @@ func _physics_process(delta):
 			timer = 0
 		else:
 			if timer > waiting: #now teleport to player
-				self.translation = Common.player.transform.origin
+				self.translation = Common.player.transform.origin + add_pos
 				match pose:
 					0:
 						set_state('Pose 1')
