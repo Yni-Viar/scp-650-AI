@@ -1,11 +1,12 @@
-extends KinematicBody
+extends CharacterBody3D
 #Created by elmarcoh . License: The Unlicense. This project is from here: https://github.com/elmarcoh/fps-controller-godot
-onready var camRoot = $CameraRoot
-onready var camera = $CameraRoot/Camera
-onready var raycast = $CameraRoot/Camera/RayCast
+@onready var camRoot = $CameraRoot
+@onready var camera = $CameraRoot/Camera3D
+@onready var raycast = $CameraRoot/Camera3D/RayCast3D
+@onready var scppos = $Marker3d
 
-var velocity = Vector3.ZERO
-var current_velocity = Vector3.ZERO
+var vel = Vector3.ZERO
+var current_vel = Vector3.ZERO
 var direction = Vector3.ZERO
 
 const MOUSE_SENSITIVITY = 0.1
@@ -26,9 +27,9 @@ func _ready():
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		camRoot.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
-		camRoot.rotation_degrees.x = clamp(camRoot.rotation_degrees.x, -75, 75)
-		self.rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
+		camRoot.rotate_x(deg_to_rad(event.relative.y * MOUSE_SENSITIVITY * -1))
+		camRoot.rotation.x = clamp(camRoot.rotation.x, -75, 75)
+		self.rotate_y(deg_to_rad(event.relative.x * MOUSE_SENSITIVITY * -1))
 
 func _process(delta):
 	window_activity()
@@ -69,8 +70,14 @@ func _physics_process(delta):
 	
 	var accel = ACCEL if is_on_floor() else AIR_ACCEL
 	
-	current_velocity = \
-		current_velocity.linear_interpolate(target_vel, accel * delta)
-	velocity.x = current_velocity.x
-	velocity.z = current_velocity.z
-	velocity = move_and_slide(velocity, Vector3.UP, true, 4, deg2rad(45))
+	current_vel = \
+		current_vel.lerp(target_vel, accel * delta)
+	velocity.x = current_vel.x
+	velocity.z = current_vel.z
+	set_velocity(velocity)
+	set_up_direction(Vector3.UP)
+	set_floor_stop_on_slope_enabled(true)
+	set_max_slides(4)
+	set_floor_max_angle(deg_to_rad(45))
+	move_and_slide()
+	velocity = velocity

@@ -1,16 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://dmlgj4vara1xk"]
 
-[ext_resource path="res://FPSController/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://GFX/Models/SCP-650-GLTF/SCP_650.tscn" type="PackedScene" id=2]
-[ext_resource path="res://GFX/Models/Rooms/LC_cont2_650.tscn" type="PackedScene" id=3]
+[ext_resource type="PackedScene" uid="uid://cktbevbxmnkbt" path="res://FPSController/Player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://cktc55h5o3sof" path="res://GFX/Models/Rooms/lc_cont_2_650.tscn" id="1_bj2hg"]
+[ext_resource type="PackedScene" uid="uid://dmc7i1kn356h6" path="res://GFX/Models/SCP-650-GLTF/scp_650.tscn" id="3_cvg5t"]
+[ext_resource type="Script" path="res://Scripts/scp650.gd" id="4_vn0xc"]
 
-[node name="Facility" type="Spatial"]
+[node name="Facility" type="Node3D"]
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.01256, 1.40419, 1.54028 )
+[node name="LC_cont2_650" parent="." instance=ExtResource("1_bj2hg")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="SCP_650" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.61248, 0.255659, -8.54709 )
+[node name="Player" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.01256, 1.40419, 1.54028)
 
-[node name="LC_cont2_650" parent="." instance=ExtResource( 3 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+[node name="SCP_650" parent="." instance=ExtResource("3_cvg5t")]
+script = ExtResource("4_vn0xc")
