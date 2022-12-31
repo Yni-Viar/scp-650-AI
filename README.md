@@ -1,6 +1,6 @@
 # scp-650-AI
 
-SCP-650 AI sample in Godot Engine 4 Beta 3
+SCP-650 AI sample in Godot Engine 4 Beta 9
 
 If you want to see Godot 3 sample, then choose "godot3" branch
 
